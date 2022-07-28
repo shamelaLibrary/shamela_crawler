@@ -17,6 +17,7 @@ class ShamelaSpider(CrawlSpider):
             yield {
                 "title": book.css("a.book_title::text").get(),
                 "author": book.css("a.text-gray::text").get(),
+                "category": " ".join(response.css("h1::text").get().split()[1:]),
                 "description": book.css("p.des::text").get().replace("\r", "\n"),
                 "link": book.css("a.book_title::attr(href)").get(),
             }
